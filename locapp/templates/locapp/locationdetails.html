@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<div class="container" style="margin-top:150px">
+    <div class="container-fluid">
+        {% for detail in dest_details %}
+        <div style="margin-top:25px;"><img src="{{detail.destinationImage.url}}" style="width: 400px; height: 350px; float: right;" ></div>
+        <h1><span style="color:black;font: 72px georgia, sans-serif;">Explore</span>  <span style="color:#f66342;font: 72px georgia, sans-serif;">{{detail.destination_name}}</span></h1>
+        <h3 class="text-primary" style="margin-top: 55px;"><span style="color:#bcc550">Description:</span> <span style="color:#f66342;">{{detail.destination_desc}}</span></h3>
+        <h3 class="text-primary" style="margin-top: 55px;"><span style="color:#bcc550">Extra Info:</span> <span style="color:#f66342;"> {{detail.destination_extras}}</span></h3>
+        {% endfor %}
+        <h3 class="text-primary" style="margin-top: 55px;"><span style="color:#bcc550">Total minimum distance from your location: </span> <span style="color:#f66342;"> {{distance}} km</span></h3>
+    </div>
+
+</div>
+<div class="container" style="margin-top:120px;">
+    <hr style="color:#f66342;height:2px;border-width:0;">
+    <h1 class="mb-5 mt-5 text-danger text-center"><span style="color:#f66342;">Location Route on Map</span></h1>
+    <hr style="color:#f66342;height:2px;border-width:0; margin-bottom: 30px;">
+</div>
+
+<div class="container" style="width: 900px;height:650px; margin-top: 80px;">
+    {{map| safe}}
+</div>
+
+<div class="container" style="margin-bottom: 80px;">
+    {% if dest_meta_details %}
+    <hr style="color:#f66342;height:2px;border-width:0;">
+    <h1 class="mt-5 mb-5 text-danger text-center" style="margin-bottom: 60px;"><span style="color:#f66342;">Other Relevent Info</span></h1>
+    <hr style="color:#f66342;height:2px;border-width:0; margin-bottom: 30px;">
+    <p style="margin-top: 80px;"></p>
+        {% for detail in dest_meta_details %}
+            <div class='col-lg-4' style='cursor: pointer; padding-bottom: 15px;'>
+                <div style='height: 410.59px;' class='card mb-3' style='border: 1px solid #33cdc6;'>
+                    <img style='height:300px; width: 100%;' class='card-img-top' src='{{detail.meta_destination_Image.url}}' alt='Card image cap'>
+                    <div class='card-body'>
+                        <h5 class='card-title mt-3' style='color: #293a44;'>{{detail.meta_destination_name}}</h5>
+                        <p class='card-text mt-3'>{{detail.meta_destination_desc}}</p>
+                        <p class='card-text'>
+                            <a class="btn btn-primary" href="{% url 'locapp:loc_meta_detail' detail.pk %}">Get More info</a>
+                        </p> 
+                    </div>
+                    <div class="card-footer">
+                        Footer Text here
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+</div>
+{% endblock body %}

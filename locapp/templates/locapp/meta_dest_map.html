@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block body %}
+<div style="margin-top: 200px;"></div>
+<div class="jumbotron mt-4" style="height: 420px; min-width: 585px; border: 0.08em solid black;">
+    <div class="container-fluid">
+        
+        <div class="mt-5" style="float: right;width: 400px; height: 450px;">{{map| safe}}</div>
+            <h3 class="text-primary mt-5">Location: {{dest_meta_details.meta_destination_name}}</h3>
+            
+            <h3 class="text-primary" style="margin-top: 55px;">Description: {{dest_meta_details.meta_destination_desc}}</h3>
+            
+            <a class="btn btn-lg btn-success mt-5" href="https://www.google.com/maps/place/{{dest_meta_details.meta_dest_name}}">Want to Explore?</a>
+    </div>
+    
+
+</div>
+
+{% endblock body%}

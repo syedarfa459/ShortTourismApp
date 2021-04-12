@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+<!-- tags for facebook login  -->
+{% load socialaccount %}
+{% providers_media_js %}
+
+{% block body %}
+    <a class="mt-5 btn btn-lg btn-success" href="{% provider_login_url "google" %}">Login Via Google</a>
+    <!-- <a class="btn btn-success" href="{% provider_login_url "facebook" method="oauth2" %}">Login Via Facebook</a> -->
+{% endblock %}
